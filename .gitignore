@@ -3,7 +3,9 @@
 __pycache__
 
 # Data directory
-data/
+data/examples
+data/out-Images
+data/out-videos
 
 # Pretrained weights binaries
 models/binaries

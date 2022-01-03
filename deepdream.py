@@ -217,7 +217,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Wrapping configuration into a dictionary
-    config = dict() #changes
+    config = dict()
     for arg in vars(args):
         config[arg] = getattr(args, arg)
     config['dump_dir'] = OUT_VIDEOS_PATH if config['create_ouroboros'] else OUT_IMAGES_PATH
