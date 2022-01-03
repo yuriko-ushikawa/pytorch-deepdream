@@ -18,7 +18,7 @@ root.columnconfigure(1, weight=2)
 root.columnconfigure(2, weight=3)
 
 
-input  = tk.StringVar()
+input  = tk.StringVar() #changes
 input   ="cloud.jpg"
 img_width  = tk.StringVar()
 model_name  = tk.StringVar()
