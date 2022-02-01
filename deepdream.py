@@ -236,6 +236,8 @@ if __name__ == "__main__":
 
 
         config['img_width'] = 960
+        config['model_name'] = 'RESNET50'
+        config['pretrained_weights'] = 'PLACES_365'
         config['layers_to_use'] = ['layer3']  # layer34 was used
         config['pyramid_size'] = 4
         config['pyramid_ratio'] = 1.8

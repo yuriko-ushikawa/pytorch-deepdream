@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0e8c1d7b-31f1-453f-8cfc-505321622c32}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>deepdream.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>CondaEnv|CondaEnv|deepdream</InterpreterId>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="deepdream.py" />
+    <Compile Include="models\definitions\alexnet.py" />
+    <Compile Include="models\definitions\googlenet.py" />
+    <Compile Include="models\definitions\resnets.py" />
+    <Compile Include="models\definitions\vggs.py" />
+    <Compile Include="playground.py" />
+    <Compile Include="test.py" />
+    <Compile Include="utils\constants.py" />
+    <Compile Include="utils\utils.py" />
+    <Compile Include="utils\video_utils.py" />
+    <Compile Include="window_test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\examples\dataset_matters\figures_width_600_model_RESNET50_IMAGENET_layer4_pyrsize_8_pyrratio_1.4_iter_10_lr_0.09_shift_32_resized400.jpg" />
+    <Content Include="data\examples\dataset_matters\figures_width_600_model_RESNET50_PLACES_365_layer4_pyrsize_8_pyrratio_1.4_iter_10_lr_0.09_shift_32_resized400.jpg" />
+    <Content Include="data\examples\deepdream_video\deepdream_video.gif" />
+    <Content Include="data\examples\figures_width_600_model_VGG16_IMAGENET_relu4_3_pyrsize_12_pyrratio_1.4_iter_10_lr_0.09_shift_32_resized500.jpg" />
+    <Content Include="data\examples\figures_width_600_model_VGG16_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.4_iter_10_lr_0.09_shift_41.jpg" />
+    <Content Include="data\examples\footer\figures_width_600_model_RESNET50_PLACES_365_layer3_pyrsize_11_pyrratio_1.3_iter_10_lr_0.09_shift_32_resized400.jpg" />
+    <Content Include="data\examples\footer\figures_width_600_model_RESNET50_PLACES_365_layer4_pyrsize_11_pyrratio_1.3_iter_10_lr_0.09_shift_32_resized400.jpg" />
+    <Content Include="data\examples\high_level_dreaming\figures_width_600_model_RESNET50_PLACES_365_layer4_pyrsize_11_pyrratio_1.3_iter_10_lr_0.09_shift_34_resized300.jpg" />
+    <Content Include="data\examples\high_level_dreaming\figures_width_600_model_VGG16_IMAGENET_relu4_3_pyrsize_12_pyrratio_1.4_iter_10_lr_0.09_shift_101_resized300.jpg" />
+    <Content Include="data\examples\high_level_dreaming\green_bridge_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_resized.jpg" />
+    <Content Include="data\examples\jupyter\image_pyramid.png" />
+    <Content Include="data\examples\jupyter\vgg16.png" />
+    <Content Include="data\examples\lion_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu3_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_resized400.jpg" />
+    <Content Include="data\examples\low_level_dreaming\figures_width_600_model_GOOGLENET_IMAGENET_inception3b_pyrsize_11_pyrratio_1.3_iter_10_lr_0.09_shift_35_resized300.jpg" />
+    <Content Include="data\examples\low_level_dreaming\figures_width_600_model_RESNET50_IMAGENET_layer2_pyrsize_11_pyrratio_1.3_iter_10_lr_0.09_shift_34_resized300.jpg" />
+    <Content Include="data\examples\low_level_dreaming\figures_width_600_model_RESNET50_IMAGENET_layer2_pyrsize_11_pyrratio_1.3_iter_30_lr_0.09_shift_150_resized300.jpg" />
+    <Content Include="data\examples\ouroboros\translation.gif" />
+    <Content Include="data\examples\ouroboros\zoom.gif" />
+    <Content Include="data\examples\ouroboros\zoom_rotate.gif" />
+    <Content Include="data\examples\pyramid_ratio\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_2_pyrsize_5_pyrratio_1.1_iter_10_lr_0.09_shift_38_resized300.jpg" />
+    <Content Include="data\examples\pyramid_ratio\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_2_pyrsize_5_pyrratio_1.5_iter_10_lr_0.09_shift_38_resized300.jpg" />
+    <Content Include="data\examples\pyramid_ratio\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_2_pyrsize_5_pyrratio_1.8_iter_10_lr_0.09_shift_38_resized300.jpg" />
+    <Content Include="data\examples\pyramid_size\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_3_pyrratio_1.3_iter_10_lr_0.09_shift_33_resized300.jpg" />
+    <Content Include="data\examples\pyramid_size\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_7_pyrratio_1.3_iter_10_lr_0.09_shift_33_resized300.jpg" />
+    <Content Include="data\examples\pyramid_size\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_9_pyrratio_1.3_iter_10_lr_0.09_shift_33_resized300.jpg" />
+    <Content Include="data\examples\the_ai_epiphany\figures_width_960_model_RESNET50_PLACES_365_layer3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_40.jpg" />
+    <Content Include="data\examples\the_ai_epiphany\figures_width_960_model_RESNET50_PLACES_365_layer3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_40_resized500.jpg" />
+    <Content Include="data\input\capture.PNG" />
+    <Content Include="data\input\cloud.jpg" />
+    <Content Include="data\input\figures.jpg" />
+    <Content Include="data\input\golden_gate.jpg" />
+    <Content Include="data\input\green_bridge.jpg" />
+    <Content Include="data\input\lion.jpg" />
+    <Content Include="data\input\taj_mahal.jpg" />
+    <Content Include="data\input\tubingen.png" />
+    <Content Include="data\out-images\RESNET50_IMAGENET\Capture_width_600_model_RESNET50_IMAGENET_layer1_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\RESNET50_IMAGENET\Capture_width_600_model_RESNET50_IMAGENET_layer2_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\RESNET50_IMAGENET\Capture_width_600_model_RESNET50_IMAGENET_layer3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\RESNET50_IMAGENET\Capture_width_600_model_RESNET50_IMAGENET_layer4_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\RESNET50_IMAGENET\cloud_width_600_model_RESNET50_IMAGENET_layer3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\RESNET50_IMAGENET\cloud_width_600_model_RESNET50_IMAGENET_layer4_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\Capture_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\cloud_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\cloud_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_40_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\figures_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\figures_width_960_model_VGG16_EXPERIMENTAL_IMAGENET_relu3_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_40_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\rand_noise_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET\taj_mahal_width_600_model_VGG16_EXPERIMENTAL_IMAGENET_relu4_3_pyrsize_4_pyrratio_1.8_iter_10_lr_0.09_shift_32_smooth_0.5.jpg" />
+    <Content Include="data\out-videos\VGG16_EXPERIMENTAL_IMAGENET\000000.jpg" />
+    <Content Include="data\out-videos\VGG16_EXPERIMENTAL_IMAGENET\000001.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="data\examples" />
+    <Folder Include="data\examples\dataset_matters" />
+    <Folder Include="data\examples\deepdream_video" />
+    <Folder Include="data\examples\footer" />
+    <Folder Include="data\examples\high_level_dreaming" />
+    <Folder Include="data\examples\jupyter" />
+    <Folder Include="data\examples\low_level_dreaming" />
+    <Folder Include="data\examples\ouroboros" />
+    <Folder Include="data\examples\pyramid_ratio" />
+    <Folder Include="data\examples\pyramid_size" />
+    <Folder Include="data\examples\the_ai_epiphany" />
+    <Folder Include="data\input" />
+    <Folder Include="data\out-images\" />
+    <Folder Include="data\out-images\RESNET50_IMAGENET" />
+    <Folder Include="data\out-images\VGG16_EXPERIMENTAL_IMAGENET" />
+    <Folder Include="data\out-videos\" />
+    <Folder Include="data\out-videos\VGG16_EXPERIMENTAL_IMAGENET" />
+    <Folder Include="models\" />
+    <Folder Include="models\definitions" />
+    <Folder Include="utils" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|deepdream" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

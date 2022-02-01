@@ -26,7 +26,7 @@ class ResNet50(torch.nn.Module):
             if os.path.exists(resnet50_places365_binary_path):
                 state_dict = torch.load(resnet50_places365_binary_path)['state_dict']
             else:
-                binary_url = r'http://places2.csail.mit.edu/models_places365/resnet50_places365.pth.tar'
+                binary_url = 'https://github.com/ProGamerGov/pytorch-places/raw/restructured-models/pt_places365.pth'
                 print(f'Downloading {binary_name} from {binary_url} it may take some time.')
                 download_url_to_file(binary_url, resnet50_places365_binary_path)
                 print('Done downloading.')
