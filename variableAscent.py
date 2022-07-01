@@ -34,30 +34,65 @@ def run_script(input_files):
     print(f'Saved DeepDream static image to: {os.path.relpath(dump_path)}\n')
 
 
-def run_script_for_different_layers(layers, input_files):
-
+def run_script_for_different_images(input_files):
     for file in input_files:
         config["input"] = file
         config['input_name'] = os.path.basename(config['input'])
 
-        for layer in layers:
-
-            config["layers_to_use"] = [layer]
-            config['input_name'] = os.path.basename(config['input'])
-
-            for x in range(10): #ilość iteracji dla warstwy i obrazu
-                i = (x + 1) / 90 # inkrement (o jaką wartość podnosimy parametr co krok)
-                config['pyramid_ratio'] = i + 1.4 # od jakiej wartości zaczyna pętla (musi być > 1) (np. i+1, i+1.1, i+1.2 itp.)
-                img = deepdream.deep_dream_static_image(config,
-                                                        img=None)  # img=None -> will be loaded inside of deep_dream_static_image
-                dump_path = utils.save_and_maybe_display_image(config, img)
-                print(f'Saved DeepDream static image to: {os.path.relpath(dump_path)}\n')
-            else:
-                print("Sequence finished for layer " + layer)
+        for x in range(30):
+            i = (x + 1) / 60
+            config['pyramid_ratio'] = i + 1
+            img = deepdream.deep_dream_static_image(config,
+                                                    img=None)  # img=None -> will be loaded inside of deep_dream_static_image
+            dump_path = utils.save_and_maybe_display_image(config, img)
+            print(f'Saved DeepDream static image to: {os.path.relpath(dump_path)}\n')
         else:
-            print("Layer finished")
+            print("Sequence finished for element " + file)
     else:
-        print("Code exited successfully")
+        print("Process terminated")
+
+def run_script_for_different_layers(layers, input_files):
+
+    config["input"] = input_files[0]
+
+    for layer in layers:
+
+        config["layers_to_use"] = [layer]
+        config['input_name'] = os.path.basename(config['input'])
+
+        for x in range(10):
+            i = (x + 1) / 90
+            config['pyramid_ratio'] = i + 1.4
+            img = deepdream.deep_dream_static_image(config,
+                                                    img=None)  # img=None -> will be loaded inside of deep_dream_static_image
+            dump_path = utils.save_and_maybe_display_image(config, img)
+            print(f'Saved DeepDream static image to: {os.path.relpath(dump_path)}\n')
+        else:
+            print("Sequence finished for layer " + layer)
+    else:
+        print("Process terminated")
+
+def run_script_for_different_shift_size(layers, input_files, multiplier):
+
+    config["input"] = input_files[0]
+
+    for layer in layers:
+
+        config["layers_to_use"] = [layer]
+        config['input_name'] = os.path.basename(config['input'])
+
+        for x in range(10):
+            i = x + 1
+            config['spatial_shift_size'] = i * multiplier
+            img = deepdream.deep_dream_static_image(config,
+                                                    img=None)  # img=None -> will be loaded inside of deep_dream_static_image
+            dump_path = utils.save_and_maybe_display_image(config, img)
+            print(f'Saved DeepDream static image to: {os.path.relpath(dump_path)}\n')
+        else:
+            print("Sequence finished for layer " + layer)
+    else:
+        print("Process terminated")
+
 
 
 if __name__ == '__main__':
@@ -65,22 +100,17 @@ if __name__ == '__main__':
 
     # Here we can perform any kind of loop over configuration settings, yeah!
 
-    input_files = ["sowa (1).png", "sowa (2).png", "sowa (3).png", "sowa (4).png", "sowa (5).png"] # obrazy do obrobienia
+    input_files = ["sowa (1).png"] # nazwa pliku do przemielenia
 
-    layers = ["layer4", "layer3"] # warstwy
+    layers = ["layer4", "layer3"] # warstwy po których jedziemy (pamiętaj że dla róznych bibliotek są rózne nazwy warstw! (patrz dokumentacja))
 
-    run_script_for_different_layers(layers, input_files)
 
-    ####################################
-    # Barteńku!
-    # aby zmienić wartości parametrów po których latają pętlę idź do definicji funkcji run_script_for_different_layers() 
-    # i modyfikuj wartości w pętli (patrz linijka 48)
-    # w razie kłopotów z pamięcią spróbuj zmniejszyć rozdzielczość (linijka 7 - wartość img_width)
-    # jeśli chcesz bawić się innymi parametrami od linijki 5 zaczyna się definicja konfiguracji. 
-    # 
-    # Aby uruchomić ten kod wystarczy, że skorzystasz z terminala środowiska Condy z wgranymi wszystkimi gadżetami
-    # do ML (tak jak to robiliśmy u Ciebie) i odpalisz ten plik tj. 'python variableAscent.py'. Wszystkie parametry kontrolujesz
-    # z kodu.
+    run_script_for_different_layers(layers, input_files) 
+    
+    # odpalasz z terminala 'python variableAscent.py' i jedziesz
+    # wartości po których lata pętla masz w linijce 65, możesz modyfikować. Pamiętaj że pyramid_ratio > 1
+    # możesz tam zmienić zakres range(x), inkrement i i od jakiej wartości zaczynasz (następna linijka)
+    # jak chcesz majstrować przy innych parametrach u górze plku masz config
+    # jakby ci się krzaczyła pamięć to możesz zmniejszyć rozdzielczość (linijka 7)
+    # powodzenia!
 
-    # Powodzenia!!!! <3
-    # ################################### 
