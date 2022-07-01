@@ -276,6 +276,15 @@ def print_ouroboros_video_header(config):
     print(f'fps = {config["fps"]}')
     print('*' * 50, '\n')
 
+def print_cynamonos_video_header(config):
+    print(f'Creating a {config["cynamonos_length"]}-frame Cynamonos video from {config["input_name"]}, via {config["model_name"]} model.')
+    print(f'Using pretrained weights = {config["pretrained_weights"]}')
+    print(f'Using model layers = {config["layers_to_use"]}')
+    print(f'Video output width = {config["img_width"]}')
+    print(f'fps = {config["fps"]}')
+    print('*' * 50, '\n')
+
+
 
 def parse_input_file(input):
     # Handle abs/rel paths

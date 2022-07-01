@@ -132,7 +132,39 @@ def deep_dream_video_ouroboros(config):
 
         # Step 2: transform frame e.g. central zoom, spiral, etc.
         # Note: this part makes amplifies the psychodelic-like appearance
-        frame = utils.transform_frame(config, frame)
+        # frame = utils.transform_frame(config, frame)
+
+    video_utils.create_video_from_intermediate_results(config)
+    print(f'time elapsed = {time.time()-ts} seconds.')
+
+def deep_dream_video_cynamonos(config):
+    """
+    Feeds the output dreamed image back to the input and repeat
+
+    Name etymology for nerds: https://en.wikipedia.org/wiki/Ouroboros
+
+    """
+    ts = time.time()
+    assert any([config['input_name'].lower().endswith(img_ext) for img_ext in SUPPORTED_IMAGE_FORMATS]), \
+        f'Expected an image, but got {config["input_name"]}. Supported image formats {SUPPORTED_IMAGE_FORMATS}.'
+
+    utils.print_cynamonos_video_header(config)  # print some ouroboros-related metadata to the console
+
+    img_path = utils.parse_input_file(config['input'])
+    # load numpy, [0, 1] range, channel-last, RGB image
+    # use_noise and consequently None value, will cause it to initialize the frame with uniform, [0, 1] range, noise
+    frame = None if config['use_noise'] else utils.load_image(img_path, target_shape=config['img_width'])
+
+    for frame_id in range(config['cynamonos_length']):
+        print(f'Cynamonos iteration {frame_id+1}.')
+        # Step 1: apply DeepDream and feed the last iteration's output to the input
+        frame = deep_dream_static_image(config, frame)
+        dump_path = utils.save_and_maybe_display_image(config, frame, name_modifier=frame_id)
+        print(f'Saved cynamonos frame to: {os.path.relpath(dump_path)}\n')
+
+        # Step 2: transform frame e.g. central zoom, spiral, etc.
+        # Note: this part makes amplifies the psychodelic-like appearance
+        # frame = utils.transform_frame(config, frame)
 
     video_utils.create_video_from_intermediate_results(config)
     print(f'time elapsed = {time.time()-ts} seconds.')
@@ -182,18 +214,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # Common params
-    parser.add_argument("--input", type=str, help="Input IMAGE or VIDEO name that will be used for dreaming", default='figures.jpg')
-    parser.add_argument("--img_width", type=int, help="Resize input image to this width", default=600)
-    parser.add_argument("--layers_to_use", type=str, nargs='+', help="Layer whose activations we should maximize while dreaming", default=['relu4_3'])
+    parser.add_argument("--input", type=str, help="Input IMAGE or VIDEO name that will be used for dreaming", default='tree1.jpg')
+    parser.add_argument("--img_width", type=int, help="Resize input image to this width", default=500)
+    parser.add_argument("--layers_to_use", type=str, nargs='+', help="Layer whose activations we should maximize while dreaming", default=['layer2'])
     parser.add_argument("--model_name", choices=[m.name for m in SupportedModels],
-                        help="Neural network (model) to use for dreaming", default=SupportedModels.VGG16_EXPERIMENTAL.name)
+                        help="Neural network (model) to use for dreaming", default=SupportedModels.RESNET50.name)
     parser.add_argument("--pretrained_weights", choices=[pw.name for pw in SupportedPretrainedWeights],
-                        help="Pretrained weights to use for the above model", default=SupportedPretrainedWeights.IMAGENET.name)
-
+                        help="Pretrained weights to use for the above model", default=SupportedPretrainedWeights.PLACES_365.name)
     # Main params for experimentation (especially pyramid_size and pyramid_ratio)
     parser.add_argument("--pyramid_size", type=int, help="Number of images in an image pyramid", default=4)
     parser.add_argument("--pyramid_ratio", type=float, help="Ratio of image sizes in the pyramid", default=1.8)
-    parser.add_argument("--num_gradient_ascent_iterations", type=int, help="Number of gradient ascent iterations", default=10)
+    parser.add_argument("--num_gradient_ascent_iterations", type=int, help="Number of gradient ascent iterations", default=8)
     parser.add_argument("--lr", type=float, help="Learning rate i.e. step size in gradient ascent", default=0.09)
 
     # deep_dream_video_ouroboros specific arguments (ignore for other 2 functions)
